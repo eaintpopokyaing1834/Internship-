@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<>, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .updateVariable{
+            
+          margin: 10px;
+            padding: 10px 15px;
+
+           
+        }
+        .nameString{
+            border: 1px solid black;
+            display: flex;
+            border-radius: 10px;
+            width: 500px;
+            height: 350px;
+            margin: auto;
+            
+
+        }
+        .vipMember{
+            border: 1px solid black;
+            padding: 10px 15px;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        
+        
+        .container{
+            display:flex;
+            gap:50px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0,1);
+        }
+        .left, .right{
+            flex:1;
+        }
+        input{
+            width: 100;
+            padding:10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border:1px solid #ccc;
+
+        }
+        .card{
+            background: #eee;
+            padding: 20px;
+            border-radius: 10px;
+            width:250px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0,2);
+        }
+        .vip{
+            background: gold;
+            display:inline-block;
+            padding:3px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            margin-bottom:10px ;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- left side -->
+    <div class="container">
+        <div class="left">
+    <h1>Update Variables</h1>
+    <div>
+        <label>Name(String):</label>
+        <h3><input type="text"></h3>
+    </div>
+    <div>
+        <label>Age(Number):</label>
+        <h3><input type="number"></h3>
+    </div>
+    <div>
+        <label>VIP Status(Boolean):</lanel>
+        <h3><input type="checkbox"></h3>
+    </div>
+    <div>
+        <label>Card Color:</label>
+        <h3><input type="color"></h3>
+    </div>
+    </div>
+    <div class="right">
+        <h1>Live DOM Output</h1>
+        <div class="vipMember" id="vipMember">
+            <div id="vipTag" class="vip">VIP MEMBER</div>
+            <h3 id="displayName">Alex Walker</h3>
+            <p id="displayAge">Age:28</p>
+        </div>
+    </div>    
+</div>
+<script>
+    const nameInput = document.getElementById("name");
+    const ageInput = document.getElementById("age");
+    const vipInput = document.getElementById("vip");
+    const colorInput = document.getElementById("color");
+  
+    const displayName = document.getElementById("displayName");
+    const displayAge = document.getElementById("displayAge");
+    const vipTag = document.getElementById("vipTag");
+    const card = document.getElementById("card");
+  
+    function update() {
+      displayName.textContent = nameInput.value;
+      displayAge.textContent = "Age: " + ageInput.value;
+  
+      // VIP show/hide
+      if (vipInput.checked) {
+        vipTag.style.display = "inline-block";
+      } else {
+        vipTag.style.display = "none";
+      }
+  
+      // Card color
+      card.style.background = colorInput.value;
+    }
+  
+    // Event listeners
+    nameInput.addEventListener("input", update);
+    ageInput.addEventListener("input", update);
+    vipInput.addEventListener("change", update);
+    colorInput.addEventListener("input", update);
+  </script>
+</body>
+</html>
