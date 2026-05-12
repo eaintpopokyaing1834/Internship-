@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Phone Calculator</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: rgb(190, 144, 233);
+      }
+      .calculator {
+        border-radius: 10px;
+        border: none;
+        box-shadow: 30px;
+        border: 1px;
+        margin-left: 500px;
+        margin-top: 100px;
+        width: 350px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+      }
+      .display {
+        border-radius: 10px;
+        padding-right: 20px;
+        width: 349px;
+        background-color: white;
+        height: 200px;
+        outline: none;
+        border: none;
+        text-align: right;
+        margin-bottom: 50px;
+        font-size: 30px;
+      }
+      .button {
+        border: none;
+        background-color: white;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        padding-left: 25px;
+        padding-bottom: 30px;
+        box-shadow: 40px;
+      }
+      button {
+        box-shadow: 30px;
+        padding-top: 15px;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        height: 60px;
+        width: 60px;
+        padding-bottom: 30px;
+        border: none;
+        cursor: pointer;
+        font-size: 25px;
+        color: rgb(68, 68, 226);
+        background-color: rgb(197, 215, 232);
+        border-radius: 50px;
+      }
+      button:active {
+        box-shadow:
+          inset 3px 3px 3px 3px,
+          inset -3px -3px 6px;
+      }
+      .operator {
+        color: rgb(187, 47, 126);
+      }
+      .equal {
+        background-color: rgb(218, 48, 144);
+        color: white;
+      }
+      .home-indicator {
+        border: none;
+        width: 150px;
+        height: 10px;
+        background-color: blue;
+        border-radius: 10px;
+        margin-bottom: 8px;
+        margin-left: 100px;
+        /* padding-bottom: 10px;  */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" class="display" id="display" value="0" />
+      <div class="button">
+        <button class="operator" onclick="clearDisplay()">C</button>
+
+        <button class="operator" onclick="deleteOne()">⌫</button>
+
+        <button class="operator" onclick="append('%')">%</button>
+
+        <button class="operator" onclick="append('/')">÷</button>
+
+        <button onclick="append('7')">7</button>
+
+        <button onclick="append('8')">8</button>
+
+        <button onclick="append('9')">9</button>
+
+        <button class="operator" onclick="append('*')">×</button>
+
+        <button onclick="append('4')">4</button>
+
+        <button onclick="append('5')">5</button>
+
+        <button onclick="append('6')">6</button>
+
+        <button class="operator" onclick="append('-')">-</button>
+
+        <button onclick="append('1')">1</button>
+
+        <button onclick="append('2')">2</button>
+
+        <button onclick="append('3')">3</button>
+
+        <button class="operator" onclick="append('+')">+</button>
+
+        <button onclick="append('()')">()</button>
+
+        <button onclick="append('0')">0</button>
+
+        <button onclick="append('.')">.</button>
+
+        <button class="equal" onclick="calculate()">=</button>
+      </div>
+      <div class="home-indicator"></div>
+    </div>
+
+    <script>
+      let display = document.getElementById("display");
+      function append(value) {
+        if (display.value === "0") {
+          display.value = value;
+        } else {
+          display.value += value;
+        }
+      }
+      function clearDisplay() {
+        display.value = "0";
+      }
+      function deleteOne() {
+        display.value = display.value.slice(0, -1);
+        if (display.value == "") {
+          display.value = "0";
+        }
+      }
+      function calculate() {
+        try {
+          let exp = display.value;
+          if (exp.includes("%") && !exp.match(/\d+%\d/)) {
+            exp = exp.replace("%", "/100");
+          }
+          display.value = eval(exp);
+        } catch {
+          display.value = "Error";
+        }
+      }
+    //   function append {
+// const display = document.getElementById("display");
+        // const currentContent = display.innerText;
+        // const lastChar = currentContent.slice(-1);
+        // const operator = ["+", "-", "*", "/", "%"];
+
+        // if (operator.includes(lastChar)) {
+        //   return;
+        // } else {
+        //   display.innerText += op;
+        // }
+    //   }
+    </script>
+  </body>
+</html>
