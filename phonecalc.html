@@ -26,6 +26,7 @@
         background: white;
         padding: 20px;
         border-radius: 20px;
+        position:relative;
       }
 
       #display {
@@ -47,7 +48,7 @@
       button {
         color: rgb(68, 68, 226);
         background-color: rgb(197, 215, 232);
-        height: 55px;
+        height: 52px;
         border: none;
         border-radius: 50%;
         font-size: 22px;
@@ -68,6 +69,17 @@
         background-color: rgb(218, 48, 144);
         color: white;
       }
+      .home-indicator {
+        border: none;
+        width: 80px;
+        height: 3px;
+        background-color: blue;
+        border-radius: 10px;
+        position:absolute;
+        margin:10px auto;
+        margin-left:75px;
+      }
+      
     </style>
   </head>
 
@@ -101,6 +113,7 @@
         <button>.</button>
         <button class="equal">=</button>
       </div>
+      <div class="home-indicator"></div>
     </div>
 
     <script>
@@ -108,7 +121,7 @@
       const buttons = document.querySelectorAll("button");
 
       function isOperator(value) {
-        return ["+", "-", "×", "÷",  ".", "%"].includes(value);
+        return ["+", "-", "*", "/",  ".", "%"].includes(value);
       }
       
 
@@ -205,8 +218,12 @@
                   .replace(/(\d)\(/g, "$1*(");
                 let result = eval(expr);
 
-                display.value = isFinite(result) ? result : "Error";
-              } catch {
+                display.value = isFinite(result) ? result : "Can't divide by zero";
+                display.focus();
+                let len=display.value.length;
+                display.setSelectionRange(len,len);
+              }
+               catch {
                 display.value = "Error";
               }
               break;
